@@ -1,3 +1,4 @@
+from datetime import datetime
 import streamlit as st
 import pygame
 import numpy as np
@@ -10,7 +11,13 @@ if 'simulation'  not in st.session_state:
     st.session_state.simulation = ParticleSimulation()
 
 # Set up the page
-st.title('States of Matter Simulation prepared by JEGHR JABBAR')
+# Set up the page
+st.title('States of Matter Simulation By JEGR JABBAR')
+
+# Add current date and time
+current_datetime = datetime.now().strftime("%B %d, %Y %H:%M:%S")
+st.write(f"Current Date and Time: **{current_datetime}**")
+
 st.write("""
 This simulation demonstrates how particles behave in different states of matter:
 - **Solid**: Particles vibrate but maintain fixed positions
