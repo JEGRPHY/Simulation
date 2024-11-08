@@ -6,7 +6,7 @@ import io
 from particle_simulation import ParticleSimulation
 
 # Initialize session state
-if 'simulation' is not in st.session_state:
+if 'simulation'  not in st.session_state:
     st.session_state.simulation = ParticleSimulation()
 
 # Set up the page
