@@ -9,25 +9,25 @@ class ParticleSimulation:
         self.temperature = 1.0  # Controls particle motion
         
     def update_solid(self):
-        # Particles vibrate around fixed positions
+        # Increased vibration multiplier from 5 to 10
         original_positions = self.positions.copy()
-        vibration = (np.random.rand(self.n_particles, 2) - 0.5) * self.temperature * 5
+        vibration = (np.random.rand(self.n_particles, 2) - 0.5) * self.temperature * 10
         self.positions += vibration
         # Return to original positions
         self.positions = 0.9 * self.positions + 0.1 * original_positions
         
     def update_liquid(self):
-        # Particles move freely but stay relatively close
-        self.velocities += (np.random.rand(self.n_particles, 2) - 0.5) * self.temperature
+        # Increased velocity multiplier to 2
+        self.velocities += (np.random.rand(self.n_particles, 2) - 0.5) * self.temperature * 2
         self.positions += self.velocities
         # Boundary conditions
         self.positions = np.clip(self.positions, 0, 400)
-        # Damping
-        self.velocities *= 0.95
+        # Reduced damping for faster movement
+        self.velocities *= 0.98
         
     def update_gas(self):
-        # Particles move rapidly and spread out
-        self.velocities += (np.random.rand(self.n_particles, 2) - 0.5) * self.temperature * 2
+        # Increased velocity multiplier from 2 to 4
+        self.velocities += (np.random.rand(self.n_particles, 2) - 0.5) * self.temperature * 4
         self.positions += self.velocities
         # Boundary conditions with bouncing
         for i in range(2):
@@ -38,6 +38,3 @@ class ParticleSimulation:
             mask = self.positions[:, i] > 400
             self.positions[mask, i] = 400
             self.velocities[mask, i] *= -1
-            
-    def get_positions(self):
-        return self.positions.astype(int)
