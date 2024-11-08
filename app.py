@@ -6,11 +6,11 @@ import io
 from particle_simulation import ParticleSimulation
 
 # Initialize session state
-if 'simulation' not in st.session_state:
+if 'simulation' is not in st.session_state:
     st.session_state.simulation = ParticleSimulation()
 
 # Set up the page
-st.title('States of Matter Simulation')
+st.title('States of Matter Simulation prepared by JEGHR JABBAR')
 st.write("""
 This simulation demonstrates how particles behave in different states of matter:
 - **Solid**: Particles vibrate but maintain fixed positions
